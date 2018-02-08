@@ -8,3 +8,5 @@ $(() => {
     }
   });;
 });
+
+//Create ranking system

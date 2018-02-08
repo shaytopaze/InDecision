@@ -38,9 +38,17 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-var polls = {
+const polls = {
+id: "randomID",
 email: "shay@shay.com",
 name: "lighthouse"
+};
+
+const options = {
+  id: "randomID",
+  name: "shay",
+  pollsID: polls.id,
+  value: 1
 };
 
 // Home page
@@ -53,46 +61,54 @@ app.post("/options", (req, res) => {
   const pollName = req.body.pollName;
   polls.email = email;
   polls.name = pollName;
- // on submit enter data into database -->
- // INSERT email INTO polls.email
- // INSERT createpoll INTO polls.name
+
  res.redirect("/options");
 
   });
 
 app.get("/options", (req, res) => {
 
-  res.render("options", polls);
+  res.render("options", {polls});
 
 });
 
+app.post("/:id/links", (req, res) => {
+  // req.body.options1 etc....
 
+  // INSERT polls.id INTO options
+  // INSERT options.name INTO options
+});
 
-// app.post("/options" (req, res) => {
-//   // INSERT polls.id INTO options
-//   // INSERT options.name INTO options
+app.get("/:id/links", (req, res) => {
 
-//   res.redirect("/:id/links");
+  res.render("links", {polls});
 
-// });
+});
 
-// app.get("/:id/links" (req, res) => {
-//   res.render("links");
-// });
+app.get("/:id/vote", (req, res) => {
+  res.render("vote");
+});
 
-// app.get("/:id/vote" (req, res) => {
+app.get("/:id/thankyou", (req, res) => {
+ res.render("thankyou");
+});
 
-// });
+app.post("/:id/results", (req, res) => {
+  // if req.params.id is === polls.id
+  // INSERT value INTO options.value
 
-// app.post("/:id/vote" (req, res) => {
+})
 
-// });
-
-// app.get("/:id/results" (req, res) => {
-
-// });
-
+app.get("/:id/results", (req, res) => {
+  res.render("results");
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
