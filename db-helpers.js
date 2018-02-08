@@ -15,13 +15,15 @@ const knex        = require("knex")(knexConfig[ENV]);
 //   if (err) return console.error(err);
 // });
 
-knex.select('id').from('polls')
-.asCallback(function(err, rows) {
-  if (err) return console.error(err);
+knex.select('id')
+  .from('polls')
+  .where('email', 'test@test.com')
+  .asCallback(function(err, rows) {
+    if (err) return console.error(err);
+  return(rows[0].id)
+      });
 
-console.log(rows)
-    });
-
+console.log(search)
 
 // // knex SQL query
 knex.select('*').from('options')
