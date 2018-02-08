@@ -39,7 +39,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 const polls = {
-id: randomID
+id: "randomID",
 email: "shay@shay.com",
 name: "lighthouse"
 };
@@ -47,7 +47,7 @@ name: "lighthouse"
 const options = {
   id: "randomID",
   name: "shay",
-  pollsID: polls.id
+  pollsID: polls.id,
   value: 1
 };
 
