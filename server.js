@@ -38,7 +38,7 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-const polls = {
+var polls = {
 email: "shay@shay.com",
 name: "lighthouse"
 };
