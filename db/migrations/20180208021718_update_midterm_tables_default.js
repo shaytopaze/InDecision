@@ -12,9 +12,9 @@ exports.up = function(knex, Promise) {
     knex.schema
     .createTable('options', function (table) {
       table.increments();
-      table.string('name');
-      table.integer('pollsID').references('id').inTable('polls');
-      table.integer('value');
+      table.string('title').notNull();
+      table.string('description');
+      table.integer('poll_id').references('id').inTable('polls');
     }),
 
     knex.schema
