@@ -38,77 +38,98 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-const polls = {
-id: "randomID",
-email: "shay@shay.com",
-name: "lighthouse"
-};
+// const polls = {
+// id: "randomID",
+// email: "shay@shay.com",
+// name: "lighthouse"
+// };
 
-const options = {
-  id: "randomID",
-  name: "shay",
-  pollsID: polls.id,
-  value: 1
-};
+// const options = {
+//   id: "randomID",
+//   name: "shay",
+//   pollsID: polls.id,
+//   value: 1
+// };
+
+const getPollsID =
+knex.select('id')
+.from('polls')
+.where(`email`, `req.body.email`)
+
+const getPollsName =
+knex.select('name')
+.from('polls')
+.where(`email`, `req.body.email`)
 
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Create Options Page
 app.post("/options", (req, res) => {
-  const email = req.body.email;
-  const pollName = req.body.pollName;
-  polls.email = email;
-  polls.name = pollName;
+  // const email = req.body.email;
+  // const pollName = req.body.pollName;
+  // polls.email = email;
+  // polls.name = pollName;
+  knex('polls')
+  .insert({email: req.body.email, pollName: req.body.pollName})
+  .then((results) => {
+    return results;
+  })
 
- res.redirect("/options");
+
+ res.redirect(`/${getPollsID}/options`);
 
   });
 
-app.get("/options", (req, res) => {
+app.get("/:id/options", (req, res) => {
 
-  res.render("options", {polls});
+  res.render("options", {pollsID: req.params.id});
+  // How to pass poll table info into options page?
 
 });
 
+// Post Created, Links Created Page
 app.post("/:id/links", (req, res) => {
   // req.body.options1 etc....
 
   // INSERT polls.id INTO options
   // INSERT options.name INTO options
+  knex('options')
+  .insert({id: req.body.id, name: req.body.name})
+  .then((results) => {
+    return results;
+  })
+  // How to pass options to link page?
 });
 
-app.get("/:id/links", (req, res) => {
+// app.get("/:id/links", (req, res) => {
 
-  res.render("links", {polls});
+//   res.render("links", {polls});
 
-});
+// });
 
-app.get("/:id/vote", (req, res) => {
-  res.render("vote");
-});
+// app.get("/:id/vote", (req, res) => {
+//   res.render("vote");
+// });
 
-app.get("/:id/thankyou", (req, res) => {
- res.render("thankyou");
-});
+// app.get("/:id/thankyou", (req, res) => {
+//  res.render("thankyou");
+// });
 
-app.post("/:id/results", (req, res) => {
-  // if req.params.id is === polls.id
-  // INSERT value INTO options.value
+// app.post("/:id/results", (req, res) => {
+//   // if req.params.id is === polls.id
+//   // INSERT value INTO options.value
 
-})
+// })
 
-app.get("/:id/results", (req, res) => {
-  res.render("results");
-});
+// app.get("/:id/results", (req, res) => {
+//   res.render("results");
+// });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
-
-
-
-
 
 

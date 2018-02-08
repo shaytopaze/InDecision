@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema
@@ -15,7 +14,7 @@ exports.up = function(knex, Promise) {
       table.integer('pollsID').references('id').inTable('polls');
       table.integer('value');
     })
-    
+
   ]);
 };
 
@@ -23,6 +22,6 @@ exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('options'),
     knex.schema.dropTable('polls')
-    
+
   ]);
 };
