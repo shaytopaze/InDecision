@@ -39,70 +39,64 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // const polls = {
-// id: "randomID",
-// email: "shay@shay.com",
-// name: "lighthouse"
+//   id: "randomID",
+//   email: "shay@shay.com",
+//   question: "What should I eat for dinner?"
 // };
 
 // const options = {
 //   id: "randomID",
-//   name: "shay",
-//   pollsID: polls.id,
-//   value: 1
+//   poll_id: "shay",
+//   title: Sandwhich,
+//   description: "description"
 // };
 
-const getPollsID =
-knex.select('id')
-.from('polls')
-.where(`email`, `req.body.email`)
+// const rankings = {
+//   id: "randomID",
+//   option_id: "options.id",
+//   rank: 1
+// }
 
-const getPollsName =
-knex.select('name')
-.from('polls')
-.where(`email`, `req.body.email`)
+// const getPollsID() =
+// knex.select('id')
+// .from('polls')
+// .where(`email`, `req.body.email`)
 
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
+// const getPollsName() =
+// knex.select('name')
+// .from('polls')
+// .where(`email`, `req.body.email`)
 
-// Create Options Page
-app.post("/options", (req, res) => {
-  // const email = req.body.email;
-  // const pollName = req.body.pollName;
-  // polls.email = email;
-  // polls.name = pollName;
-  knex('polls')
-  .insert({email: req.body.email, pollName: req.body.pollName})
-  .then((results) => {
-    return results;
-  })
+// Home Page / Create Polls Page
+
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+
+// app.post("/", (req, res) => {
+
+//   knex('polls')
+//   .insert({email: req.body.email, question: req.body.question})
+//   .then((results) => {
+//     return results;
+//   })
+
+//   knex('options')
+//   insert({poll_id: polls.id, title: req.body.title , description: req.body.description})
+//   .then((results) => {
+//     return results;
+//   })
 
 
- res.redirect(`/${getPollsID}/options`);
+//  res.redirect(`/${options.id}/links`);
 
-  });
+//   });
 
-app.get("/:id/options", (req, res) => {
+// app.get("/:id/links", (req, res) => {
 
-  res.render("options", {pollsID: req.params.id});
-  // How to pass poll table info into options page?
+//   res.render("links");
 
-});
-
-// Post Created, Links Created Page
-app.post("/:id/links", (req, res) => {
-  // req.body.options1 etc....
-
-  // INSERT polls.id INTO options
-  // INSERT options.name INTO options
-  knex('options')
-  .insert({id: req.body.id, name: req.body.name})
-  .then((results) => {
-    return results;
-  })
-  // How to pass options to link page?
-});
+// });
 
 // app.get("/:id/links", (req, res) => {
 
