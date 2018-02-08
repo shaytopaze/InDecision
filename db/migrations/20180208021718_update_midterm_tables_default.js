@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
     .createTable('options', function (table) {
       table.increments();
       table.string('name');
-      table.integer('polls_id').references('id').inTable('polls');
+      table.integer('pollsID').references('id').inTable('polls');
       table.integer('value');
     })
     
