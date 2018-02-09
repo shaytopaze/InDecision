@@ -1,7 +1,35 @@
-body {
-  background-color: #EEE;
+html body {
+  background-color: #f7f7f2;
+  font-family: 'Roboto', sans-serif;
 
   h1 {
     color: #244751;
   }
+}
+
+#form_width {
+  min-width: 350px;
+}
+
+#styles_form {
+  margin-top: 60px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sticky-top {
+  background-color: #de3c4b;
+  height: 60px;
+  text-align: center;
+}
+
+.sticky-top p {
+  color: #fff;
+  font-size: 2em;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
 }
