@@ -72,13 +72,15 @@ app.get("/", (req, res) => {
 });
 
 app.post("/links", (req, res) => {
-  console.log("question:", req.body.question);
+  // console.log("question:", req.body.question);
+  console.log("posted to links");
+
   knex('polls')
   .insert({email: req.body.email, question: req.body.question})
   .returning('id')
   .then((results) => {
     // console.log("poll insert results", results);
-    const pollID = results[0]
+    const pollID = results[0];
     knex('options')
     .insert({poll_id: results[0], title: req.body.title , description: req.body.description})
     .then((results) => {
@@ -91,7 +93,8 @@ app.post("/links", (req, res) => {
     });
   })
   .catch((err) => {
-    console.log("oh god fuck why why why");
+    console.log(err);
+    console.log("bad error");
   });
 });
 
