@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
+const PORT        = process.env.PORT || 3000;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
@@ -37,33 +37,6 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
-
-// const polls = {
-//   id: "randomID",
-//   email: "shay@shay.com",
-//   question: "What should I eat for dinner?"
-     // admin_link
-     // public_link
-
-// };
-
-// const options = {
-//   id: "randomID",
-//   poll_id: "shay",
-//   title: Sandwhich,
-//   description: "description"
-// };
-
-// const rankings = {
-//   id: "randomID",
-//   option_id: "options.id",
-//   rank: 1
-// }
-
-// const getPollsID() =
-// knex.select('id')
-// .from('polls')
-
 
 // Home Page / Create Polls Page
 
@@ -103,13 +76,14 @@ app.get(`/:pollID/links`, (req, res) => {
   knex.select('id')
   .from('polls')
   .then((results) => {
-    const getPollsID = results
+    const ID = req.params.pollID;
+    const getPollsID = results;
+    // console.log(getPollsID);
+    // console.log("hey im here" + getPollsID[ID].id);
+    // console.log("ID" + ID);
     res.render("links", {getPollsID});
   })
 });
-
-
-
 
 
 
@@ -120,12 +94,6 @@ app.get(`/:pollID/links`, (req, res) => {
 // 2) either way, how do we get the information we need (for app.get('links'))?
 // 3) Jeremy says there's a design problem that will prevent that, so there's some
 //      @$%^^ assumption we're making that is wrong.  Must find that assumption.
-
-app.get("/:pollID/links", (req, res) => {
-
-  res.render("links");
-
-});
 
 app.get("/:pollID/vote", (req, res) => {
   knex.select('question')
@@ -139,11 +107,6 @@ app.get("/:pollID/vote", (req, res) => {
   })
 
 });
-
-
-
-
-
 
 // app.get("/:id/thankyou", (req, res) => {
 //  res.render("thankyou");
@@ -162,5 +125,13 @@ app.get("/:pollID/vote", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
+
+
 
 
