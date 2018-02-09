@@ -42,6 +42,9 @@ app.use("/api/users", usersRoutes(knex));
 //   id: "randomID",
 //   email: "shay@shay.com",
 //   question: "What should I eat for dinner?"
+     // admin_link
+     // public_link
+
 // };
 
 // const options = {
@@ -62,11 +65,6 @@ app.use("/api/users", usersRoutes(knex));
 // .from('polls')
 
 
-// const getPollsName() =
-// knex.select('name')
-// .from('polls')
-
-
 // Home Page / Create Polls Page
 
 app.get("/", (req, res) => {
@@ -80,11 +78,12 @@ app.post("/links", (req, res) => {
   .returning('id')
   .then((results) => {
     // console.log("poll insert results", results);
+    const pollID = results[0]
     knex('options')
     .insert({poll_id: results[0], title: req.body.title , description: req.body.description})
     .then((results) => {
       // return results;
-      res.redirect(`/links`);
+      res.redirect(`/${pollID}/links`);
     })
     .catch((err) => {
       console.log("this is completely intolerable, I am outta here");
@@ -94,37 +93,54 @@ app.post("/links", (req, res) => {
   .catch((err) => {
     console.log("oh god fuck why why why");
   });
-
-
-
-
 });
 
-app.get("/links", (req, res) => {
-  var fuckery = 'pretty amazing';
-  res.render("links", fuckery);
+app.get(`/:pollID/links`, (req, res) => {
 
+  knex.select('id')
+  .from('polls')
+  .then((results) => {
+    const getPollsID = results
+    res.render("links", {getPollsID});
+  })
 });
+
+
+
+
+
+
+
+
 
 // 1) why is doing DB queries in global scope a crazy idea? (non-immediate problem)
 // 2) either way, how do we get the information we need (for app.get('links'))?
 // 3) Jeremy says there's a design problem that will prevent that, so there's some
 //      @$%^^ assumption we're making that is wrong.  Must find that assumption.
 
+app.get("/:pollID/links", (req, res) => {
+
+  res.render("links");
+
+});
+
+app.get("/:pollID/vote", (req, res) => {
+  knex.select('question')
+  .from('polls')
+  .where('id', req.params.pollID)
+  .then((results) => {
+    const getPollsQuestion = results
+    console.log(getPollsQuestion);
+  res.render("vote", {getPollsQuestion});
+
+  })
+
+});
 
 
 
 
 
-// app.get("/:id/links", (req, res) => {
-
-//   res.render("links", {polls});
-
-// });
-
-// app.get("/:id/vote", (req, res) => {
-//   res.render("vote");
-// });
 
 // app.get("/:id/thankyou", (req, res) => {
 //  res.render("thankyou");
