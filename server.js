@@ -60,43 +60,61 @@ app.use("/api/users", usersRoutes(knex));
 // const getPollsID() =
 // knex.select('id')
 // .from('polls')
-// .where(`email`, `req.body.email`)
+
 
 // const getPollsName() =
 // knex.select('name')
 // .from('polls')
-// .where(`email`, `req.body.email`)
+
 
 // Home Page / Create Polls Page
 
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-// app.post("/", (req, res) => {
+app.post("/links", (req, res) => {
+  console.log("question:", req.body.question);
+  knex('polls')
+  .insert({email: req.body.email, question: req.body.question})
+  .returning('id')
+  .then((results) => {
+    // console.log("poll insert results", results);
+    knex('options')
+    .insert({poll_id: results[0], title: req.body.title , description: req.body.description})
+    .then((results) => {
+      // return results;
+      res.redirect(`/links`);
+    })
+    .catch((err) => {
+      console.log("this is completely intolerable, I am outta here");
+      res.status(500).send(err);
+    });
+  })
+  .catch((err) => {
+    console.log("oh god fuck why why why");
+  });
 
-//   knex('polls')
-//   .insert({email: req.body.email, question: req.body.question})
-//   .then((results) => {
-//     return results;
-//   })
-
-//   knex('options')
-//   insert({poll_id: polls.id, title: req.body.title , description: req.body.description})
-//   .then((results) => {
-//     return results;
-//   })
 
 
-//  res.redirect(`/${options.id}/links`);
 
-//   });
+});
 
-// app.get("/:id/links", (req, res) => {
+app.get("/links", (req, res) => {
+  var fuckery = 'pretty amazing';
+  res.render("links", fuckery);
 
-//   res.render("links");
+});
 
-// });
+// 1) why is doing DB queries in global scope a crazy idea? (non-immediate problem)
+// 2) either way, how do we get the information we need (for app.get('links'))?
+// 3) Jeremy says there's a design problem that will prevent that, so there's some
+//      @$%^^ assumption we're making that is wrong.  Must find that assumption.
+
+
+
+
+
 
 // app.get("/:id/links", (req, res) => {
 
