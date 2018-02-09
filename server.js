@@ -38,77 +38,110 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-const polls = {
-id: "randomID",
-email: "shay@shay.com",
-name: "lighthouse"
-};
+// const polls = {
+//   id: "randomID",
+//   email: "shay@shay.com",
+//   question: "What should I eat for dinner?"
+// };
 
-const options = {
-  id: "randomID",
-  name: "shay",
-  pollsID: polls.id,
-  value: 1
-};
+// const options = {
+//   id: "randomID",
+//   poll_id: "shay",
+//   title: Sandwhich,
+//   description: "description"
+// };
 
-// Home page
+// const rankings = {
+//   id: "randomID",
+//   option_id: "options.id",
+//   rank: 1
+// }
+
+// const getPollsID() =
+// knex.select('id')
+// .from('polls')
+
+
+// const getPollsName() =
+// knex.select('name')
+// .from('polls')
+
+
+// Home Page / Create Polls Page
+
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/options", (req, res) => {
-  const email = req.body.email;
-  const pollName = req.body.pollName;
-  polls.email = email;
-  polls.name = pollName;
-
- res.redirect("/options");
-
+app.post("/links", (req, res) => {
+  console.log("question:", req.body.question);
+  knex('polls')
+  .insert({email: req.body.email, question: req.body.question})
+  .returning('id')
+  .then((results) => {
+    // console.log("poll insert results", results);
+    knex('options')
+    .insert({poll_id: results[0], title: req.body.title , description: req.body.description})
+    .then((results) => {
+      // return results;
+      res.redirect(`/links`);
+    })
+    .catch((err) => {
+      console.log("this is completely intolerable, I am outta here");
+      res.status(500).send(err);
+    });
+  })
+  .catch((err) => {
+    console.log("oh god fuck why why why");
   });
 
-app.get("/options", (req, res) => {
 
-  res.render("options", {polls});
 
-});
-
-app.post("/:id/links", (req, res) => {
-  // req.body.options1 etc....
-
-  // INSERT polls.id INTO options
-  // INSERT options.name INTO options
-});
-
-app.get("/:id/links", (req, res) => {
-
-  res.render("links", {polls});
 
 });
 
-app.get("/:id/vote", (req, res) => {
-  res.render("vote");
+app.get("/links", (req, res) => {
+  var fuckery = 'pretty amazing';
+  res.render("links", fuckery);
+
 });
 
-app.get("/:id/thankyou", (req, res) => {
- res.render("thankyou");
-});
+// 1) why is doing DB queries in global scope a crazy idea? (non-immediate problem)
+// 2) either way, how do we get the information we need (for app.get('links'))?
+// 3) Jeremy says there's a design problem that will prevent that, so there's some
+//      @$%^^ assumption we're making that is wrong.  Must find that assumption.
 
-app.post("/:id/results", (req, res) => {
-  // if req.params.id is === polls.id
-  // INSERT value INTO options.value
 
-})
 
-app.get("/:id/results", (req, res) => {
-  res.render("results");
-});
+
+
+
+// app.get("/:id/links", (req, res) => {
+
+//   res.render("links", {polls});
+
+// });
+
+// app.get("/:id/vote", (req, res) => {
+//   res.render("vote");
+// });
+
+// app.get("/:id/thankyou", (req, res) => {
+//  res.render("thankyou");
+// });
+
+// app.post("/:id/results", (req, res) => {
+//   // if req.params.id is === polls.id
+//   // INSERT value INTO options.value
+
+// })
+
+// app.get("/:id/results", (req, res) => {
+//   res.render("results");
+// });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
-
-
-
-
 
 

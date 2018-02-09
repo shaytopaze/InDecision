@@ -14,11 +14,13 @@ module.exports = (knex) => {
     });
   });
 
-  return router;
 
   router.post("/", (req, res) => {
 
   });
+
+  return router;
+
 }
 
 
