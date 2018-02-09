@@ -2,33 +2,22 @@ const knexConfig  = require("./knexfile");
 const ENV         = process.env.ENV || "development";
 const knex        = require("knex")(knexConfig[ENV]);
 
-// knex('polls')
-// .returning('id') // check to ensure that value has been inserted
-// .insert({email: 'test@test.com', name: 'This is a test!'}).asCallback(function(err, rows){
-//   if (err) return console.error(err);
-// });
 
+// function to set rank based on position (needs to be in order)
 
-// knex('options')
-// .returning('id') // check to ensure that value has been inserted
-// .insert({name: 'Go for a walk', value: 1}).asCallback(function(err, rows){
-//   if (err) return console.error(err);
-// });
+const dummy = [1, 2, 3, 4, 5, 6, 7];
 
-knex.select('id')
-  .from('polls')
-  .where('email', 'test@test.com')
-  .asCallback(function(err, rows) {
-    if (err) return console.error(err);
-  return(rows[0].id)
-      });
+const rank = () => {
+  dummy.forEach(function(element){
+    position = dummy.indexOf(element);
+    console.log(dummy.length - position)    
+  }); 
+};
 
-console.log(search)
+// test query
 
-// // knex SQL query
-knex.select('*').from('options')
-.asCallback(function(err, rows) {
-  if (err) return console.error(err);
-
-console.log(rows)
-    });
+knex.select('*')
+  .from('options')
+  .then((result) => {
+    console.log(result)
+});
