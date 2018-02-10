@@ -52,6 +52,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/", (req, res) => {
+
+})
+
 // Poll CREATED! Here are your links page
 
 app.post("/links", (req, res) => {
@@ -70,12 +74,12 @@ app.post("/links", (req, res) => {
       ])
     .then((results) => {
       res.redirect(`/${pollID}/links`);
-
+      // Send email to poll maker via mailgun
       const data = {
         from: 'InDecision <me@sandbox123.mailgun.org>',
         to: req.body.email,
         subject: 'Hello',
-        text: 'Testing some Mailgun awesomeness!'
+        html: '<html><body><a href=`http://localhost:3000/<%=pollID%>/vote`>Voting Page</a><br><a href=`http://localhost:3000/<%=pollID%>/results`>Results Page</a></body></html>'
       }
       mailgun.messages().send(data, function (error, body) {
         console.log(body);
@@ -103,7 +107,6 @@ app.get(`/:pollID/links`, (req, res) => {
   })
 });
 
-
 // Voting Page
 
 app.get("/:pollID/vote", (req, res) => {
@@ -122,15 +125,25 @@ app.get("/:pollID/vote", (req, res) => {
         .where('poll_id', req.params.pollID)
         .then((descriptionResults) => {
           const getDescriptionOptions = descriptionResults;
+          knex.select('poll_id')
+          .from('options')
+          .where('poll_id', req.params.pollID)
+          .then((pollIdResults) => {
+            knex.select('id')
+            .from('options')
+            .where('poll_id', req.params.pollID)
+            .then((idResults) => {
             const templateVars = {
               getPollOptions : getPollOptions,
               getPollsQuestion : getPollsQuestion,
-              getDescriptionOptions : getDescriptionOptions
+              getDescriptionOptions : getDescriptionOptions,
+              pollIdResults : pollIdResults,
+              idResults : idResults
             };
-    console.log(templateVars.getPollOptions[0]);
     const optionsObject = templateVars.getPollOptions[0].title;
-    // console.log(templateVars.getPollOptions[0]);
   res.render("vote", {templateVars});
+          })
+        })
       })
     })
   })
@@ -140,11 +153,11 @@ app.get("/:pollID/vote", (req, res) => {
 //  res.render("thankyou");
 // });
 
-// app.post("/:id/results", (req, res) => {
-//   // if req.params.id is === polls.id
-//   // INSERT value INTO options.value
+app.post("/:id/results", (req, res) => {
 
-// })
+ res.render('results');
+
+})
 
 // Results of Poll Page
 
@@ -155,6 +168,7 @@ app.get("/:id/results", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
 
 
 
