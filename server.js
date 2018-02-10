@@ -2,17 +2,25 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 3000;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 3000;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
+const api_key = 'key-87fdec77b39658cebf66cdd751724823';
+const domain = 'sandbox68f2332894a849ca861de3e185adf06a.mailgun.org';
+const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+const from_who = 'indecision@indecision';
+
+app.use(express.static(__dirname + '/js'));
+app.set('view engine', 'pug');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -61,8 +69,17 @@ app.post("/links", (req, res) => {
       {poll_id: results[0], title: req.body.title5, description: req.body.description5}
       ])
     .then((results) => {
-
       res.redirect(`/${pollID}/links`);
+
+      const data = {
+        from: 'InDecision <me@sandbox123.mailgun.org>',
+        to: req.body.email,
+        subject: 'Hello',
+        text: 'Testing some Mailgun awesomeness!'
+      }
+      mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+      });
     })
     .catch((err) => {
       console.log("this is completely intolerable, I am outta here");
@@ -75,7 +92,6 @@ app.post("/links", (req, res) => {
   });
 });
 
-
 app.get(`/:pollID/links`, (req, res) => {
 
   knex.select('id')
@@ -87,6 +103,7 @@ app.get(`/:pollID/links`, (req, res) => {
   })
 });
 
+
 // Voting Page
 
 app.get("/:pollID/vote", (req, res) => {
@@ -94,7 +111,7 @@ app.get("/:pollID/vote", (req, res) => {
   .from('polls')
   .where('id', req.params.pollID)
   .then((results) => {
-    const getPollsQuestion = results
+    const getPollsQuestion = results;
     knex.select('title')
     .from('options')
     .where('poll_id', req.params.pollID)
@@ -138,6 +155,18 @@ app.get("/:id/results", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
