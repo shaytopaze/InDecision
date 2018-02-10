@@ -1,39 +1,47 @@
 $(() => {
 
+    $( function sortOptions() {
+      $("#sortable").sortable({
+        cancel: ".disable-sort"
+      });
+    });
+
+    $('#voting').on('click',function(e){
+      function giveArrayRanking( opt ) {
+        var array = [];
+        var counter = 1;
+        var tempObject = {
+
+        };
+        for ( var i = 0; i < opt.length; i++ ) {
+          tempObject = {
+            id: counter,
+            title: $('#TITLE'+i).text(),
+            description: $('#DESC'+i).text(),
+            poll_id: 100
+          }
+          array.push(tempObject);
+          counter = counter + 1;
+        }
+        console.log(array);
+
+      }
+      var option = $( "li" ).get();
+      giveArrayRanking(option);
+
+    });
+
+    $('#testbutton').on('click',function(e){
+        $('')
+        alert("good");
+    });
+
+}); //main document ready ends here
 
 
-  // $('#sortable').sortable({
-  //   update: function(event, ui) {
-  //     var option = $(this).sortable('toArray');
-  //     // $.get('update-sort.cfm', {fruitOrder:fruitOrder});
-  //   console.log(option);
-  //   }
-  });
-
-  $('button example id').on('click',function(e){
-    $('#sortable').toArray();
-  });
 
 
 
-  // var $messageEmptyTweet = $('<p>This is working!</p>');
-  //   $('.sticky-top').append($messageEmptyTweet);
-
-  // $( function sortOptions() {
-      // $("#sortable").sortable({
-      //   cancel: ".disable-sort"
- });
-
-
-  // function giveArrayRanking( option ) {
-  //   var array = [];
-  //   for ( var i = 0; i < option.length; i++ ) {
-  //     array.push(option[i].innerHTML);
-  //   }
-  //   $( "span" ).text( array.join( " " ) );
-  //   console.log (array);
-  // }
-  // var option = $( "li" ).toArray();
 
   // giveArrayRanking(option);
   // var test = $("#sortable li").toArray().reverse();
