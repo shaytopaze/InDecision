@@ -11,13 +11,15 @@ $(() => {
         var allListElements = $( "li" );
         var elements = allListElements.innerHTML;
         console.log(elements);
-        var counter = 1;
+        // var counter = 1;
         $('ul li').each(function(i){
+          console.log($(this).attr('id'));
+            var id = $(this).attr('id');
             var title = $(this).attr('title'); // This is your rel value
             var desc = $(this).attr('desc');
             var tempObject;
             tempObject = {
-              id: counter,
+              id: id,
               title: title,
               desc: desc,
               poll_id: 100
