@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
     <title>Decision Maker</title>
   </head>
 <body>
@@ -18,37 +17,33 @@
         </div>
         <div class="col-sm" id="voting">
           <section>
-            <div>
+            <div class="question">
                 <%=templateVars.getPollsQuestion[0].question%>
             </div>
             <ul id="sortable">
-                <li>
-                  <span id="TITLE0"><%=templateVars.getPollOptions[0].title%></span>
-                  <span id="DESC0"><%=templateVars.getDescriptionOptions[0].description%></span>
+                <li title='<%=templateVars.getPollOptions[0].title%>' desc='<%=templateVars.getDescriptionOptions[0].description%>'>
+                  <button type="button" class="btn btn-secondary"><%=templateVars.getPollOptions[0].title%></button>
+                  <span><%=templateVars.getDescriptionOptions[0].description%></span>
                 </li>
-                <li>
-                    <span id="TITLE1"><%=templateVars.getPollOptions[1].title%></span>
-                    <span id="DESC1"><%=templateVars.getDescriptionOptions[1].description%></span>
+                <li title='<%=templateVars.getPollOptions[1].title%>' desc='<%=templateVars.getDescriptionOptions[1].description%>'>
+                    <button type="button" class="btn btn-secondary"><%=templateVars.getPollOptions[1].title%></button>
+                    <span><%=templateVars.getDescriptionOptions[1].description%></span>
                 </li>
-                <li>
-                    <span id="TITLE2"><%=templateVars.getPollOptions[2].title%></span>
-                    <span id="DESC2"><%=templateVars.getDescriptionOptions[2].description%></span>
+                <li title='<%=templateVars.getPollOptions[2].title%>' desc='<%=templateVars.getDescriptionOptions[2].description%>'>
+                    <button type="button" class="btn btn-secondary"><%=templateVars.getPollOptions[2].title%></button>
+                    <span><%=templateVars.getDescriptionOptions[2].description%></span>
                 </li>
-                <li>
-                    <span id="TITLE3"><%=templateVars.getPollOptions[3].title%></span>
-                    <span id="DESC3"><%=templateVars.getDescriptionOptions[3].description%></span>
+                <li title='<%=templateVars.getPollOptions[3].title%>' desc='<%=templateVars.getDescriptionOptions[3].description%>'>
+                    <button type="button" class="btn btn-secondary"><%=templateVars.getPollOptions[3].title%></button>
+                    <span ><%=templateVars.getDescriptionOptions[3].description%></span>
                 </li>
-                <li>
-                  <span id="TITLE4"><%=templateVars.getPollOptions[4].title%></span>
-                  <span id="DESC4"><%=templateVars.getDescriptionOptions[4].description%></span>
+                <li title='<%=templateVars.getPollOptions[4].title%>' desc='<%=templateVars.getDescriptionOptions[4].description%>'>
+                  <button type="button" class="btn btn-secondary"><%=templateVars.getPollOptions[4].title%></button>
+                  <span><%=templateVars.getDescriptionOptions[4].description%></span>
                 </li>
               </ul>
               <button type="submit" id="singlebutton" id="voting" name="singlebutton" class="btn btn-primary center-block">Submit</button>
-
           </section>
-
-          <button type="button" id="testbutton" name="testbutton" class="btn btn-primary">Test</button>
-          <span id="testspan"></span>
         </div>
         <div class="col-sm">
         </div>
