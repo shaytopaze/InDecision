@@ -1,5 +1,4 @@
 $(() => {
-
     $( function sortOptions() {
       $("#sortable").sortable({
         cancel: ".disable-sort"
@@ -7,11 +6,8 @@ $(() => {
     });
 
     $('#voting').on('click',function(e){
-
         var array = [];
         var counter = 1;
-
-
         var allListElements = $( "li" );
         var elements = allListElements.innerHTML;
         console.log(elements);
@@ -26,33 +22,12 @@ $(() => {
               desc: desc,
               poll_id: 100
             };
-
             array.push(tempObject);
             counter = counter + 1;
-
-
          });
          console.log(array);
     });
-
 }); //main document ready ends here
-
-
-
-
-
-
-  // giveArrayRanking(option);
-  // var test = $("#sortable li").toArray().reverse();
-  // console.log(test);
-
-// });
-
-
-
-
-
-
 
   // The following is dummy code to demonstrate using ajax to access the users route, which we don't use.
   // $.ajax({
@@ -65,4 +40,3 @@ $(() => {
   // });;
 
 
-//Create ranking system
