@@ -55,7 +55,7 @@ app.post("/links", (req, res) => {
     // console.log("poll insert results", results);
     const pollID = results[0];
     knex('options')
-    .insert({poll_id: results[0], title: req.body.title , description: req.body.description})
+    .insert({poll_id: results[0], title: req.body.title1 , description: req.body.description1})
     .then((results) => {
       // return results;
       res.redirect(`/${pollID}/links`);
