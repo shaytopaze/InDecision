@@ -7,33 +7,32 @@ $(() => {
     });
 
     $('#voting').on('click',function(e){
-      function giveArrayRanking( opt ) {
+
         var array = [];
         var counter = 1;
-        var tempObject = {
 
-        };
-        for ( var i = 0; i < opt.length; i++ ) {
-          tempObject = {
-            id: counter,
-            title: $('#TITLE'+i).text(),
-            description: $('#DESC'+i).text(),
-            poll_id: 100
-          }
-          array.push(tempObject);
-          counter = counter + 1;
-        }
-        console.log(array);
 
-      }
-      var option = $( "li" ).get();
-      giveArrayRanking(option);
+        var allListElements = $( "li" );
+        var elements = allListElements.innerHTML;
+        console.log(elements);
+        var counter = 1;
+        $('ul li').each(function(i){
+            var title = $(this).attr('title'); // This is your rel value
+            var desc = $(this).attr('desc');
+            var tempObject;
+            tempObject = {
+              id: counter,
+              title: title,
+              desc: desc,
+              poll_id: 100
+            };
 
-    });
+            array.push(tempObject);
+            counter = counter + 1;
 
-    $('#testbutton').on('click',function(e){
-        $('')
-        alert("good");
+
+         });
+         console.log(array);
     });
 
 }); //main document ready ends here
