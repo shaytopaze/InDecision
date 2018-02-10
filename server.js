@@ -2,17 +2,25 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 3000;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 3000;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
+const api_key = 'key-87fdec77b39658cebf66cdd751724823';
+const domain = 'sandbox68f2332894a849ca861de3e185adf06a.mailgun.org';
+const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+const from_who = 'indecision@indecision';
+
+app.use(express.static(__dirname + '/js'));
+app.set('view engine', 'pug');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -44,6 +52,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/", (req, res) => {
+
+})
+
 // Poll CREATED! Here are your links page
 
 app.post("/links", (req, res) => {
@@ -61,8 +73,17 @@ app.post("/links", (req, res) => {
       {poll_id: results[0], title: req.body.title5, description: req.body.description5}
       ])
     .then((results) => {
-
       res.redirect(`/${pollID}/links`);
+      // Send email to poll maker via mailgun
+      const data = {
+        from: 'InDecision <me@sandbox123.mailgun.org>',
+        to: req.body.email,
+        subject: 'Hello',
+        html: '<html><body><a href=`http://localhost:3000/<%=pollID%>/vote`>Voting Page</a><br><a href=`http://localhost:3000/<%=pollID%>/results`>Results Page</a></body></html>'
+      }
+      mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+      });
     })
     .catch((err) => {
       console.log("this is completely intolerable, I am outta here");
@@ -74,7 +95,6 @@ app.post("/links", (req, res) => {
     console.log("bad error");
   });
 });
-
 
 app.get(`/:pollID/links`, (req, res) => {
 
@@ -94,7 +114,7 @@ app.get("/:pollID/vote", (req, res) => {
   .from('polls')
   .where('id', req.params.pollID)
   .then((results) => {
-    const getPollsQuestion = results
+    const getPollsQuestion = results;
     knex.select('title')
     .from('options')
     .where('poll_id', req.params.pollID)
@@ -105,15 +125,25 @@ app.get("/:pollID/vote", (req, res) => {
         .where('poll_id', req.params.pollID)
         .then((descriptionResults) => {
           const getDescriptionOptions = descriptionResults;
+          knex.select('poll_id')
+          .from('options')
+          .where('poll_id', req.params.pollID)
+          .then((pollIdResults) => {
+            knex.select('id')
+            .from('options')
+            .where('poll_id', req.params.pollID)
+            .then((idResults) => {
             const templateVars = {
               getPollOptions : getPollOptions,
               getPollsQuestion : getPollsQuestion,
-              getDescriptionOptions : getDescriptionOptions
+              getDescriptionOptions : getDescriptionOptions,
+              pollIdResults : pollIdResults,
+              idResults : idResults
             };
-    console.log(templateVars.getPollOptions[0]);
     const optionsObject = templateVars.getPollOptions[0].title;
-    // console.log(templateVars.getPollOptions[0]);
   res.render("vote", {templateVars});
+          })
+        })
       })
     })
   })
@@ -123,11 +153,11 @@ app.get("/:pollID/vote", (req, res) => {
 //  res.render("thankyou");
 // });
 
-// app.post("/:id/results", (req, res) => {
-//   // if req.params.id is === polls.id
-//   // INSERT value INTO options.value
+app.post("/:id/results", (req, res) => {
 
-// })
+ res.render('results');
+
+})
 
 // Results of Poll Page
 
@@ -138,6 +168,19 @@ app.get("/:id/results", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
