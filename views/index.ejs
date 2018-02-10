@@ -1,103 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Decision Maker</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Decision Maker</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="sticky-top"><p>Decision Maker</p></div>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div class="sticky-top"><p>Decision Maker</p></div>
 
-    <div class="container">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm" id="styles_form">
+            <form method="POST" action="/links" id="form_width">
+              <div class="form-group">
+                <label for="email">Email </label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="poll_title">Poll Title</label>
+                <input type="text" class="form-control" id="poll_title" name="question" placeholder="Question">
+              </div>
+              <div class="form-group">
+                  <label for="option">Option 1</label>
+                  <input type="text" class="form-control" id="option" name="title1" placeholder="Desription">
+              </div>
+                  <div class="form-group">
+                  <input type="text" class="form-control" id="option_description" name="description1" placeholder="Desription">
+              </div>
+              <div class="form-group">
+                  <label for="option">Option 2</label>
+                  <input type="text" class="form-control" id="option" name="title2" placeholder="Description">
+              </div>
+                  <div class="form-group">
+                  <input type="text" class="form-control" id="option_description" name="description2" placeholder="Description">
+              </div>
+              <p>
+                  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption3" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add more</a>
+              </p>
         <div class="row">
-          <div class="col-sm">
-          </div>
-          <div class="col-sm" id="styles_form">
-              <form method="POST" action="/links" id="form_width">
-                <div class="form-group">
-                  <label for="email">Email </label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="poll_title">Poll Title</label>
-                  <input type="text" class="form-control" id="poll_title" name="question" placeholder="Question">
-                </div>
-                <div class="form-group">
-                    <label for="option">Option 1</label>
-                    <input type="text" class="form-control" id="option" name="title1" placeholder="Desription">
-                </div>
-                   <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description1" placeholder="Desription">
-                </div>
-                <div class="form-group">
-                    <label for="option">Option 2</label>
-                    <input type="text" class="form-control" id="option" name="title2" placeholder="Description">
-                </div>
-                   <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description2" placeholder="Description">
-                </div>
-                <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-                  </p>
-                  <div class="row">
-                    <div class="col">
-                      <div class="collapse multi-collapse" id="multiCollapseExample1">
-                        <div class="card card-body">
-                          Bla pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                   <div id="option3" class="form-group">
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseOption3">
+                <div id="option3" class="form-group">
                     <label for="option">Option 3</label>
                     <input type="text" class="form-control" id="option" name="title3" placeholder="Description">
                 </div>
-                   <div class="form-group">
+                    <div class="form-group">
                     <input type="text" class="form-control" id="option_description" name="description3" placeholder="Description">
                 </div>
-                <div class="form-group">
-                    <label for="option">Option 4</label>
-                    <input type="text" class="form-control" id="option" name="title4" placeholder="Desription">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description4" placeholder="Description">
-                </div>
-                <div class="form-group">
-                    <label for="option">Option 5</label>
-                    <input type="text" class="form-control" id="option" name="title5" placeholder="Description">
-                </div>
-                   <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description5" placeholder="Description">
-                </div>
-                <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary center-block">Submit</button>
-              </form>            </div>
-          <div class="col-sm">
-          </div>
-        </div>
-      </div>
-
-
-
-        <p>
-          <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-        </p>
-        <div class="row">
-          <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-              <div class="card card-body">
-                Bla pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-              </div>
+                <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption4" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add more</a>
             </div>
           </div>
         </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+        <div class="collapse multi-collapse" id="multiCollapseOption4">
+            <div id="option3" class="form-group">
+                <label for="option">Option 4</label>
+                <input type="text" class="form-control" id="option" name="title4" placeholder="Description">
+            </div>
+                <div class="form-group">
+                <input type="text" class="form-control" id="option_description" name="description4" placeholder="Description">
+            </div>
+            <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption5" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add more</a>
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseOption5">
+          <div id="option3" class="form-group">
+              <label for="option">Option 5</label>
+              <input type="text" class="form-control" id="option" name="title5" placeholder="Description">
+          </div>
+              <div class="form-group">
+              <input type="text" class="form-control" id="option_description" name="description5" placeholder="Description">
+          </div>
+       </div>
+     </div>
+        <div class="col-sm">
+        </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>
