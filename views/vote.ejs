@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
     <title>Decision Maker</title>
-
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
+<body>
+  <div class="sticky-top"><p>Decision Maker</p></div>
+  <div class="container" >
+      <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm" id="voting">
+          <section>
+            <div>
+                <%=templateVars.getPollsQuestion[0].question%>
+            </div>
+            <ul id="sortable">
+                <li>
+                  <span id="TITLE0"><%=templateVars.getPollOptions[0].title%></span>
+                  <span id="DESC0"><%=templateVars.getDescriptionOptions[0].description%></span>
+                </li>
+                <li>
+                    <span id="TITLE1"><%=templateVars.getPollOptions[1].title%></span>
+                    <span id="DESC1"><%=templateVars.getDescriptionOptions[1].description%></span>
+                </li>
+                <li>
+                    <span id="TITLE2"><%=templateVars.getPollOptions[2].title%></span>
+                    <span id="DESC2"><%=templateVars.getDescriptionOptions[2].description%></span>
+                </li>
+                <li>
+                    <span id="TITLE3"><%=templateVars.getPollOptions[3].title%></span>
+                    <span id="DESC3"><%=templateVars.getDescriptionOptions[3].description%></span>
+                </li>
+                <li>
+                  <span id="TITLE4"><%=templateVars.getPollOptions[4].title%></span>
+                  <span id="DESC4"><%=templateVars.getDescriptionOptions[4].description%></span>
+                </li>
+              </ul>
+              <button type="submit" id="singlebutton" id="voting" name="singlebutton" class="btn btn-primary center-block">Submit</button>
 
-  <body>
-    <h1>Decision Maker</h1>
-    <section>
-    <p> <%=templateVars.getPollsQuestion[0].question%>
-    <%=templateVars.getPollOptions[0].title%>
-    <%=templateVars.getDescriptionOptions[0].description%>
-    <%=templateVars.getPollOptions[1].title%>
-     <%=templateVars.getDescriptionOptions[1].description%>
-    <%=templateVars.getPollOptions[2].title%>
-     <%=templateVars.getDescriptionOptions[2].description%>
-    <%=templateVars.getPollOptions[3].title%>
-     <%=templateVars.getDescriptionOptions[3].description%>
-    <%=templateVars.getPollOptions[4].title%>
-    <%=templateVars.getDescriptionOptions[4].description%>
-    </p>
-    </section>
+          </section>
+
+          <button type="button" id="testbutton" name="testbutton" class="btn btn-primary">Test</button>
+          <span id="testspan"></span>
+        </div>
+        <div class="col-sm">
+        </div>
+      </div>
+    </div>
+
+
+   <!-- Bootstrap scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <!-- Jquery UI -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
   </body>
 </html>
