@@ -44,20 +44,27 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/links", (req, res) => {
-  // console.log("question:", req.body.question);
-  console.log("posted to links");
+// Poll CREATED! Here are your links page
 
+app.post("/links", (req, res) => {
   knex('polls')
   .insert({email: req.body.email, question: req.body.question})
   .returning('id')
   .then((results) => {
-    // console.log("poll insert results", results);
     const pollID = results[0];
     knex('options')
-    .insert({poll_id: results[0], title: req.body.title1 , description: req.body.description1})
+
+
+    .insert([
+      {poll_id: results[0], title: req.body.title1, description: req.body.description1},
+      {poll_id: results[0], title: req.body.title2, description: req.body.description2},
+      {poll_id: results[0], title: req.body.title3, description: req.body.description3},
+      {poll_id: results[0], title: req.body.title4, description: req.body.description4},
+      {poll_id: results[0], title: req.body.title5, description: req.body.description5}
+      ])
+
     .then((results) => {
-      // return results;
+
       res.redirect(`/${pollID}/links`);
     })
     .catch((err) => {
@@ -71,6 +78,7 @@ app.post("/links", (req, res) => {
   });
 });
 
+
 app.get(`/:pollID/links`, (req, res) => {
 
   knex.select('id')
@@ -78,22 +86,11 @@ app.get(`/:pollID/links`, (req, res) => {
   .then((results) => {
     const ID = req.params.pollID;
     const getPollsID = results;
-    // console.log(getPollsID);
-    // console.log("hey im here" + getPollsID[ID].id);
-    // console.log("ID" + ID);
     res.render("links", {getPollsID});
   })
 });
 
-
-
-
-
-
-// 1) why is doing DB queries in global scope a crazy idea? (non-immediate problem)
-// 2) either way, how do we get the information we need (for app.get('links'))?
-// 3) Jeremy says there's a design problem that will prevent that, so there's some
-//      @$%^^ assumption we're making that is wrong.  Must find that assumption.
+// Voting Page
 
 app.get("/:pollID/vote", (req, res) => {
   knex.select('question')
@@ -101,11 +98,28 @@ app.get("/:pollID/vote", (req, res) => {
   .where('id', req.params.pollID)
   .then((results) => {
     const getPollsQuestion = results
-    console.log(getPollsQuestion);
-  res.render("vote", {getPollsQuestion});
-
+    knex.select('title')
+    .from('options')
+    .where('poll_id', req.params.pollID)
+    .then((titleResults) => {
+      const getPollOptions = titleResults;
+      knex.select('description')
+        .from('options')
+        .where('poll_id', req.params.pollID)
+        .then((descriptionResults) => {
+          const getDescriptionOptions = descriptionResults;
+            const templateVars = {
+              getPollOptions : getPollOptions,
+              getPollsQuestion : getPollsQuestion,
+              getDescriptionOptions : getDescriptionOptions
+            };
+    console.log(templateVars.getPollOptions[0]);
+    const optionsObject = templateVars.getPollOptions[0].title;
+    // console.log(templateVars.getPollOptions[0]);
+  res.render("vote", {templateVars});
+      })
+    })
   })
-
 });
 
 // app.get("/:id/thankyou", (req, res) => {
@@ -118,13 +132,17 @@ app.get("/:pollID/vote", (req, res) => {
 
 // })
 
-// app.get("/:id/results", (req, res) => {
-//   res.render("results");
-// });
+// Results of Poll Page
+
+app.get("/:id/results", (req, res) => {
+  res.render("results");
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
 
 
 
