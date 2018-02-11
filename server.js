@@ -160,18 +160,17 @@ app.get("/:pollID/vote", (req, res) => {
 
 
 app.post("/:pollID/vote", (req, res) => {
+// console.log(req.body.id); 
 const voteResult = req.body.id
+// console.log("This is the console log of 'req.body.id'", req.body.id)
 rank(voteResult)
- console.log('Testing the POST') 
-
-console.log(req.body.id);
  res.redirect("results");
 
 })
 
 // Results of Poll Page
 
-app.get("/:id/results", (req, res) => {
+app.get("/:pollID/results", (req, res) => {
 // console.log
   res.render("results");
 });

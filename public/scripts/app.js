@@ -6,13 +6,12 @@ $(() => {
     });
 
     $('#voting').on('click',function(e){
+      e.preventDefault();
         var array = [];
         var counter = 1;
         var allListElements = $( "li" );
         var elements = allListElements.innerHTML;
-        console.log(elements);
         $('ul li').each(function(i){
-          console.log($(this).attr('id'));
             var id = $(this).attr('id');
             var title = $(this).attr('title'); // This is your rel value
             var desc = $(this).attr('desc');
@@ -27,11 +26,12 @@ $(() => {
             array.push(tempObject);
          });
          $.ajax({
+       
           type: 'POST',
           url: '/:pollID/vote',
           data:{id: array},
           success: function(event){
-            console.log("Post was successful!")
+            console.log("Post was successful!");
             console.log(array);
           },
           error:function(err){

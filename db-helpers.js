@@ -14,34 +14,32 @@ const knex        = require("knex")(knexConfig[ENV]);
 // example array of 'options'. Rank table:  ID, OPTIONS_ID, RANK
 
 const voteResult = [ { id: '1',
-    title: 'Option 1',
-    desc: 'Description 1',
+    title: 'Create the results page',
+    desc: '',
     poll_id: '1' },
   { id: '2',
-    title: 'Option 2',
-    desc: 'Description 2',
+    title: 'Help Shay with mailgun',
+    desc: '',
     poll_id: '1' },
-  { id: '3',
-    title: 'Option 3',
-    desc: 'Description 3',
-    poll_id: '1' },
-  { id: '4', title: '', desc: '', poll_id: '1' },
-  { id: '5', title: '', desc: '', poll_id: '1' } ]
+  { id: '3', title: 'Grab dinner', desc: '', poll_id: '1' },
+  { id: '4', title: 'Cry', desc: '', poll_id: '1' },
+  { id: '5', title: 'All of the above', desc: '', poll_id: '1' } ];
+
 
 
 const rank = (votes) => {
-
+      // console.log(v)
   //   console.log('TESTINGTHE MODULE');
   // knex('*')
   //   .from('options')
   //   .where('poll_id', 7)
   //   .then((result) => {
-
       votes.forEach(function(element){
+        // console.log("bluberriessss", element)
         const option_id = element.id;
         const position = votes.indexOf(element);
         const ranking = (votes.length - position);
-        console.log('Display if rank function works: ', ranking);
+        // console.log('Display if rank function works: ', ranking);
         
         knex('rankings')
           .insert({option_id: option_id, rank: ranking})
@@ -52,7 +50,9 @@ const rank = (votes) => {
     // });
 };
 
-// console.log(rank(voteResult))
+// rank(voteResult);
+
+// console.log("blue", rank(voteResult))
 
 // example array for rank
 
