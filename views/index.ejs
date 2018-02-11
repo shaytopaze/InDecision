@@ -9,78 +9,55 @@
   <title>Decision Maker</title>
 </head>
 <body>
-  <div class="sticky-top" id="hola"><p>Decision Maker</p></div>
-  <div class="container">
-      <div class="row">
-        <div class="col-sm">
-        </div>
-        <div class="col-sm" id="styles_form">
-            <form method="POST" action="/links" id="form_width">
-              <div class="form-group">
-                <label for="email">Email </label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="poll_title">Poll Title</label>
-                <input type="text" class="form-control" id="poll_title" name="question" placeholder="Question">
-              </div>
-              <div class="form-group">
-                  <label for="option">Option 1</label>
-                  <input type="text" class="form-control" id="option" name="title1" placeholder="Description">
-              </div>
+  <div class="sticky-top"><p>In<span id="letter">D</span>ecision</p></div>
+    <form method="POST" action="/" id="form_width">
+      <div class="container" >
+          <div class="row" id="col_width">
+            <div class="col" >
+              <h5 class="text-center" id="h5-color">Create a poll and share it with your friends. Let's decide together!</h5>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                  </div>
                   <div class="form-group">
-                  <input type="text" class="form-control" id="option_description" name="description1" placeholder="Description">
-              </div>
-              <div class="form-group">
-                  <label for="option">Option 2</label>
-                  <input type="text" class="form-control" id="option" name="title2" placeholder="Description">
-              </div>
-                  <div class="form-group">
-                  <input type="text" class="form-control" id="option_description" name="description2" placeholder="Description">
-              </div>
-              <p>
-                  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption3" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">+</a>
-              </p>
-              <p>
-                  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption3" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">-</a>
-              </p>
-        <div class="row">
-          <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseOption3">
-                <div id="option3" class="form-group">
-                    <label for="option">Option 3</label>
-                    <input type="text" class="form-control" id="option" name="title3" placeholder="Description">
+                    <input type="text" class="form-control" id="poll_title" name="question" placeholder="Type your question here!">
+                  </div>
+            </div>
+          </div>
+          <div class="row" id="options-bg">
+              <h3 id="options-title">Options</h3>
+          </div>
+          <div class="row" id="options-bg" class="d-inline-flex p-2">
+            <div class="col" class="d-flex flex-row" id="option-width">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="option" name="title1" placeholder="Option 1">
                 </div>
-                    <div class="form-group">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="option_description" name="description1" placeholder="Description">
+                </div>        </div>
+            <div class="col" class="d-flex flex-row" id="option-width">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="option" name="title2" placeholder="Option 2">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="option_description" name="description2" placeholder="Description">
+                </div>
+            </div>
+            <div class="col" class="d-flex flex-row" id="option-width">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="option" name="title3" placeholder="Option 3">
+                </div>
+                <div class="form-group">
                     <input type="text" class="form-control" id="option_description" name="description3" placeholder="Description">
                 </div>
-                <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption4" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">+</a>
             </div>
           </div>
+          <div class="row" id="options-bg">
+              <div class="col">
+                  <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary center-block">Create Poll</button>
+              </div>
+            </div>
         </div>
-        <div class="collapse multi-collapse" id="multiCollapseOption4">
-            <div id="option3" class="form-group">
-                <label for="option">Option 4</label>
-                <input type="text" class="form-control" id="option" name="title4" placeholder="Description">
-            </div>
-                <div class="form-group">
-                <input type="text" class="form-control" id="option_description" name="description4" placeholder="Description">
-            </div>
-            <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseOption5" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">+</a>
-        </div>
-        <div class="collapse multi-collapse" id="multiCollapseOption5">
-          <div id="option3" class="form-group">
-              <label for="option">Option 5</label>
-              <input type="text" class="form-control" id="option" name="title5" placeholder="Description">
-          </div>
-              <div class="form-group">
-              <input type="text" class="form-control" id="option_description" name="description5" placeholder="Description">
-          </div>
-       </div>
-       <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary center-block">Submit</button>
-      </div>
-        <div class="col-sm">
-    </div>
+    </form>
   <!-- Bootstrap scripts -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -89,6 +66,5 @@
   <!-- Jquery UI -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-
 </body>
 </html>

@@ -15,20 +15,20 @@ const knex        = require("knex")(knexConfig[ENV]);
 //   if (err) return console.error(err);
 // });
 
-knex.select('id')
-  .from('polls')
-  .where('email', 'test@test.com')
-  .asCallback(function(err, rows) {
-    if (err) return console.error(err);
-  return(rows[0].id)
-      });
+// knex.select('id')
+//   .from('polls')
+//   .where('email', 'test@test.com')
+//   .asCallback(function(err, rows) {
+//     if (err) return console.error(err);
+//   return(rows[0].id)
+//       });
 
-console.log(search)
+// console.log(search)
 
-// // knex SQL query
-knex.select('*').from('options')
-.asCallback(function(err, rows) {
-  if (err) return console.error(err);
+// // // knex SQL query
+// knex.select('*').from('options')
+// .asCallback(function(err, rows) {
+//   if (err) return console.error(err);
 
-console.log(rows)
-    });
+// console.log(rows)
+//     });
