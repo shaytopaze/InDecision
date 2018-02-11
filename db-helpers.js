@@ -20,3 +20,11 @@ const rank = (votes) => {
 };
 
 module.exports = rank;
+
+// // knex SQL query
+
+knex.select('*')
+.from('rankings')
+.then((result) => {
+  console.log(result)
+})
