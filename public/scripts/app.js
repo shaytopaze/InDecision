@@ -8,6 +8,16 @@ $(() => {
   //     $("<div>").text(user.name).appendTo($("body"));
   //   }
   // });;
+  $.ajax({
+     method: "POST",
+     url: "/",
+     data: {pollID: pollID},
+     success: function(result){
+       //////////////////////////
+       // TODO: REMOVE OR CHANGE
+       console.log("it works");
+       //////////////////////////
+     }
 });
 
 //Create ranking system
