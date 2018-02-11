@@ -6,7 +6,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ["Eat", "Sleep", "lol what's 'free time'"],
         datasets: [{
-            label: 'What should I do in my free time?',
+            label: 'Votes:',
             data: [25, 50, 25],
             backgroundColor: [
                 '#31406B',
@@ -22,12 +22,18 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-      duration: 3500,
       responsive: false,
+      tile: {
+        display: true,
+        text: 'What should I do in my free time?'
+      },
       legend: {
         // height: '300px',
         position: 'bottom',
         // display: false,
+      },
+      animation: {
+        duration: 5000
       }
     }
 });
