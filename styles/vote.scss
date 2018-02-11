@@ -14,11 +14,19 @@ html body {
 #centered-container {
   margin: auto;
 }
+
+#voting {
+  background-color: #999FBF;
+  min-width: 350px;
+  border-radius: 15px;
+}
+
 .question {
-  text-align: center;
-  padding-bottom: 20px;
   font-size: 2em;
   color: #fff;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-top: 20px;
 }
 
 #sortable li {
@@ -31,7 +39,7 @@ ul {
   padding: 0%;
 }
 
-#sortable li .voting-option {
+ul li .voting-option {
   color: white;
   background-color: #504A66;
   border-top-left-radius: 10px;
