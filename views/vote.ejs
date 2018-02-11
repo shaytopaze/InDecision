@@ -10,30 +10,41 @@
     <title>Decision Maker</title>
   </head>
 <body>
-  <div class="sticky-top"><p>In<span id="letter">D</span>ecision</p></div>
-  <div class="container">
-    <section id="bg-vote" >
-      <div class="question" class="text-center">
-          <%=templateVars.getPollsQuestion[0].question%>
+  <div class="sticky-top"><p>Decision Maker</p></div>
+  <div class="container" >
+      <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm" id="voting">
+          <section>
+            <div class="question">
+                <%=templateVars.getPollsQuestion[0].question%>
+            </div>
+            <form method="POST" action="/:pollID/vote">
+            <ul id="sortable">
+                <li id='<%=templateVars.idResults[0].id%>' title='<%=templateVars.getPollOptions[0].title%>' desc='<%=templateVars.getDescriptionOptions[0].description%>' poll_id='<%=templateVars.pollIdResults[0].poll_id%>'>
+                  <span><%=templateVars.getPollOptions[0].title%></span>
+                  <span><%=templateVars.getDescriptionOptions[0].description%></span>
+                </li>
+                <li id='<%=templateVars.idResults[1].id%>' title='<%=templateVars.getPollOptions[1].title%>' desc='<%=templateVars.getDescriptionOptions[1].description%>' poll_id='<%=templateVars.pollIdResults[1].poll_id%>'></li>>
+                    <span><%=templateVars.getPollOptions[1].title%></span>>
+                    <span><%=templateVars.getDescriptionOptions[1].description%></span>
+                </li>
+                <li id='<%=templateVars.idResults[2].id%>' title='<%=templateVars.getPollOptions[2].title%>' desc='<%=templateVars.getDescriptionOptions[2].description%>' poll_id='<%=templateVars.pollIdResults[2].poll_id%>'></li>>
+                    <span><%=templateVars.getPollOptions[2].title%></span>
+                    <span><%=templateVars.getDescriptionOptions[2].description%></span>
+                </li>
+              </ul>
+              <button type="submit" id="singlebutton" id="voting" name="singlebutton" class="btn btn-primary center-block">Submit</button>
+            </form>
+            </section>
+        </div>
+        <div class="col-sm">
+        </div>
       </div>
-        <ul id="sortable">
-          <li title='<%=templateVars.getPollOptions[0].title%>' desc='<%=templateVars.getDescriptionOptions[0].description%>'>
-            <span class="voting-option"><%=templateVars.getPollOptions[0].title%></span>
-            <span class="voting-description"><%=templateVars.getDescriptionOptions[0].description%></span>
-          </li>
-          <li title='<%=templateVars.getPollOptions[1].title%>' desc='<%=templateVars.getDescriptionOptions[1].description%>'>
-              <span class="voting-option"><%=templateVars.getPollOptions[1].title%></span>
-              <span class="voting-description"><%=templateVars.getDescriptionOptions[1].description%></span>
-          </li>
-          <li title='<%=templateVars.getPollOptions[2].title%>' desc='<%=templateVars.getDescriptionOptions[2].description%>'>
-              <span class="voting-option"><%=templateVars.getPollOptions[2].title%></span>
-              <span class="voting-description"><%=templateVars.getDescriptionOptions[2].description%></span>
-          </li>
-        </ul>
-        <button type="submit" id="singlebutton" id="voting" name="singlebutton" class="btn btn-primary center-block">Vote</button>
-    </section>
-  </div>
-  <!-- Bootstrap scripts -->
+    </div>
+
+   <!-- Bootstrap scripts -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

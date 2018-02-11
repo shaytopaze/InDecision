@@ -2,33 +2,29 @@ const knexConfig  = require("./knexfile");
 const ENV         = process.env.ENV || "development";
 const knex        = require("knex")(knexConfig[ENV]);
 
-// knex('polls')
-// .returning('id') // check to ensure that value has been inserted
-// .insert({email: 'test@test.com', name: 'This is a test!'}).asCallback(function(err, rows){
-//   if (err) return console.error(err);
-// });
+// function to set rank based on position (needs to be sorted already)
 
+const rank = (votes) => {
+  votes.forEach(function(element){
+    const option_id = element.id;
+    const position = votes.indexOf(element);
+    const ranking = (votes.length - position);
 
-// knex('options')
-// .returning('id') // check to ensure that value has been inserted
-// .insert({name: 'Go for a walk', value: 1}).asCallback(function(err, rows){
-//   if (err) return console.error(err);
-// });
+ // Inserts ranked data into 'rankings' table
 
-// knex.select('id')
-//   .from('polls')
-//   .where('email', 'test@test.com')
-//   .asCallback(function(err, rows) {
-//     if (err) return console.error(err);
-//   return(rows[0].id)
-//       });
+    knex('rankings')
+      .insert({option_id: option_id, rank: ranking})
+      .then((result) => {
+      });
+  });
+};
 
-// console.log(search)
+module.exports = rank;
 
-// // // knex SQL query
-// knex.select('*').from('options')
-// .asCallback(function(err, rows) {
-//   if (err) return console.error(err);
+// // knex SQL query
 
-// console.log(rows)
-//     });
+// knex.select('*')
+// .from('rankings')
+// .then((result) => {
+//   console.log(result)
+// })

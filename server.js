@@ -148,6 +148,7 @@ app.get("/:pollID/vote", (req, res) => {
 app.post("/:pollID/vote", (req, res) => {
   const voteResult = req.body.id;
   rank(voteResult);
+  console.log('Bug is here', req.body.id)
   res.redirect("thankyou");
 });
 
@@ -157,23 +158,42 @@ app.get("/:pollID/thankyou", (req, res) => {
 
 // Results of Poll Page
 
-app.get("/:pollID/results", (req, res) => {
-  knex.select('question')
-  .from('polls')
-  .where('id', req.params.pollID)
-  .then((questionResults) => {
-      knex.select('option_id', 'title', 'rank')
-      .join('options', 'option_id', '=', 'options.id')
-      .from('rankings')
-      .where('poll_id', req.params.pollID)
-      .then((result) => {
-       console.log("HEY IM RESULTS", result);
-      })
-    })
-
-  res.render("results");
-  });
+// app.get("/:pollID/results", (req, res) => {
+//   res.render("results");
+// });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
