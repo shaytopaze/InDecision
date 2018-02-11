@@ -23,6 +23,8 @@ app.use(express.static(__dirname + '/js'));
 app.set('view engine', 'pug');
 
 // Seperated Routes for each Resource
+
+const rank = require("./db-helpers.js");
 const usersRoutes = require("./routes/users");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -156,15 +158,21 @@ app.get("/:pollID/vote", (req, res) => {
 //  res.render("thankyou");
 // });
 
-app.post("/:id/results", (req, res) => {
 
- res.render('results');
+app.post("/:pollID/vote", (req, res) => {
+const voteResult = req.body.id
+rank(voteResult)
+ console.log('Testing the POST') 
+
+console.log(req.body.id);
+ res.redirect("results");
 
 })
 
 // Results of Poll Page
 
 app.get("/:id/results", (req, res) => {
+// console.log
   res.render("results");
 });
 

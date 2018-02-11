@@ -2,36 +2,45 @@ const knexConfig  = require("./knexfile");
 const ENV         = process.env.ENV || "development";
 const knex        = require("knex")(knexConfig[ENV]);
 
-
 // function to set rank based on position (needs to be in order)
 
-knex.select('*')
-  .from('options')
-  .where('poll_id', 7)
-  .then((result) => {
-    // console.log(result)
-  });
+// knex.select('*')
+//   .from('options')
+//   .where('poll_id', 7)
+//   .then((result) => {
+//     // console.log(result)
+//   });
 
 // example array of 'options'. Rank table:  ID, OPTIONS_ID, RANK
 
-// const dummyData = [
-//   { id: 6, title: '1', description: '', poll_id: 7 },
-//   { id: 7, title: '2', description: '', poll_id: 7 },
-//   { id: 8, title: '3', description: '', poll_id: 7 },
-//   { id: 9, title: '4', description: '', poll_id: 7 },
-//   { id: 10, title: '5', description: '', poll_id: 7 } ]
+const voteResult = [ { id: '1',
+    title: 'Option 1',
+    desc: 'Description 1',
+    poll_id: '1' },
+  { id: '2',
+    title: 'Option 2',
+    desc: 'Description 2',
+    poll_id: '1' },
+  { id: '3',
+    title: 'Option 3',
+    desc: 'Description 3',
+    poll_id: '1' },
+  { id: '4', title: '', desc: '', poll_id: '1' },
+  { id: '5', title: '', desc: '', poll_id: '1' } ]
 
-const rank = () => {
-    
-  knex('*')
-    .from('options')
-    .where('poll_id', 7)
-    .then((result) => {
 
-      result.forEach(function(element){
+const rank = (votes) => {
+
+  //   console.log('TESTINGTHE MODULE');
+  // knex('*')
+  //   .from('options')
+  //   .where('poll_id', 7)
+  //   .then((result) => {
+
+      votes.forEach(function(element){
         const option_id = element.id;
-        const position = result.indexOf(element);
-        const ranking = (result.length - position);
+        const position = votes.indexOf(element);
+        const ranking = (votes.length - position);
         console.log('Display if rank function works: ', ranking);
         
         knex('rankings')
@@ -40,8 +49,10 @@ const rank = () => {
 
           });
       });
-    });
+    // });
 };
+
+// console.log(rank(voteResult))
 
 // example array for rank
 
@@ -63,3 +74,5 @@ knex.select('*')
   .then((result) => {
     console.log(result);
   });
+
+module.exports = rank

@@ -11,23 +11,34 @@ $(() => {
         var allListElements = $( "li" );
         var elements = allListElements.innerHTML;
         console.log(elements);
-        // var counter = 1;
         $('ul li').each(function(i){
           console.log($(this).attr('id'));
             var id = $(this).attr('id');
             var title = $(this).attr('title'); // This is your rel value
             var desc = $(this).attr('desc');
+            var poll_id = $(this).attr('poll_id');
             var tempObject;
             tempObject = {
               id: id,
               title: title,
               desc: desc,
-              poll_id: 100
+              poll_id: poll_id
             };
             array.push(tempObject);
-            counter = counter + 1;
          });
-         console.log(array);
+         $.ajax({
+          type: 'POST',
+          url: '/:pollID/vote',
+          data:{id: array},
+          success: function(event){
+            console.log("Post was successful!")
+            console.log(array);
+          },
+          error:function(err){
+            console.log("There was an error posting!");
+            console.log(err);
+          },
+        });
     });
 }); //main document ready ends here
 
@@ -40,5 +51,3 @@ $(() => {
   //     $("<div>").text(user.name).appendTo($("body"));
   //   }
   // });;
-
-
