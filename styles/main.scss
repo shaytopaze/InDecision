@@ -1,74 +1,7 @@
 
-html body {
-  background-color: #f7f7f2;
-  font-family: 'Roboto', sans-serif;
+@import 'layout.scss';
+@import 'vote.scss';
+@import '../node_modules/bootstrap/scss/bootstrap';
 
- h1 {
-   color: #244751;
- }
-}
-
-#voting,
-#form_width {
- min-width: 350px;
-}
-
-#voting,
-#input_form {
- margin-top: 20px;
- padding: 20px;
- background-color: #fff;
- border-radius: 15px;
- font-family: ‘Roboto’, sans-serif;
-}
-
-.sticky-top {
- background-color: #de3c4b;
- height: 60px;
- text-align: center;
-}
-
-.sticky-top p {
- color: #fff;
- font-size: 2em;
- position: relative;
- top: 50%;
- transform: translateY(-50%);
-}
-
-#singlebutton {
- display: block;
- margin: auto;
- margin-top: 10px;
- width: 100%;
-}
-
-
-#styles_form {
-  margin-top: 30px;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 15px;
-  font-family: 'Roboto', sans-serif;
-}
-
-.question {
-  color:#261c15;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  font-family: 'Roboto', sans-serif;
-}
-
-#sortable li {
-  list-style-type:none;
-  margin: 5px;
-}
-
-#sortable li button {
-  list-style-type:none;
-  margin: 5px;
-  display: block;
-  width: 100%;
-}
 
 

@@ -10,7 +10,7 @@ const rank = (votes) => {
     const position = votes.indexOf(element);
     const ranking = (votes.length - position);
 
- // Inserts ranked data into 'rankings' table   
+ // Inserts ranked data into 'rankings' table  
 
     knex('rankings')
       .insert({option_id: option_id, rank: ranking})
@@ -21,10 +21,12 @@ const rank = (votes) => {
 
 module.exports = rank;
 
-// // knex SQL query
+// knex SQL query - for testing purposes
 
-knex.select('*')
-.from('rankings')
-.then((result) => {
-  console.log(result)
-})
+// knex.select('option_id', 'title', 'rank')
+// .join('options', 'option_id', '=', 'options.id')
+// .from('rankings')
+// .where('poll_id', 1)
+// .then((result) => {
+//   console.log(result)
+// })

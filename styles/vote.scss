@@ -1,0 +1,66 @@
+
+// VOTING PAGE /////////////////////////////////////////////////////
+
+html body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#bg-vote {
+  background-color: #999FBF;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+#centered-container {
+  margin: auto;
+}
+
+#voting {
+  background-color: #999FBF;
+  min-width: 350px;
+  border-radius: 15px;
+}
+
+.question {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+#sortable li {
+  margin: auto;
+  text-align: center;
+  list-style: none;
+}
+
+ul {
+  padding: 0%;
+}
+
+ul li .voting-option {
+  color: white;
+  background-color: #504A66;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid #504A66;
+  display: block;
+  margin: auto;
+  margin-top: 1.5em;
+  width: 200px;
+
+}
+
+#sortable li .voting-description {
+  color: #7e7e7e;
+  background-color: white;
+  border: 1px solid #504A66;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: block;
+  margin: auto;
+  width: 200px;
+}
+
+

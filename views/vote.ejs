@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Decision Maker</title>
-  </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>InDecision</title>
+</head>
 <body>
-  <div class="sticky-top"><p>Decision Maker</p></div>
-  <div class="container" >
+    <div class="sticky-top"><p>In<span id="letter">D</span>ecision</p></div>  <div class="container" >
       <div class="row">
         <div class="col-sm">
         </div>
@@ -23,16 +21,16 @@
             <form method="POST" action="/vote">
             <ul id="sortable">
                 <li id='<%=templateVars.idResults[0].id%>' title='<%=templateVars.getPollOptions[0].title%>' desc='<%=templateVars.getDescriptionOptions[0].description%>' poll_id='<%=templateVars.pollIdResults[0].poll_id%>'>
-                  <span><%=templateVars.getPollOptions[0].title%></span>
-                  <span><%=templateVars.getDescriptionOptions[0].description%></span>
+                  <span class="voting-option"><%=templateVars.getPollOptions[0].title%></span>
+                  <span class="voting-description"><%=templateVars.getDescriptionOptions[0].description%></span>
                 </li>
-                <li id='<%=templateVars.idResults[1].id%>' title='<%=templateVars.getPollOptions[1].title%>' desc='<%=templateVars.getDescriptionOptions[1].description%>' poll_id='<%=templateVars.pollIdResults[1].poll_id%>'></li>>
-                    <span><%=templateVars.getPollOptions[1].title%></span>>
-                    <span><%=templateVars.getDescriptionOptions[1].description%></span>
+                <li id='<%=templateVars.idResults[1].id%>' title='<%=templateVars.getPollOptions[1].title%>' desc='<%=templateVars.getDescriptionOptions[1].description%>' poll_id='<%=templateVars.pollIdResults[1].poll_id%>'>
+                    <span class="voting-option"><%=templateVars.getPollOptions[1].title%></span>
+                    <span class="voting-description"><%=templateVars.getDescriptionOptions[1].description%></span>
                 </li>
-                <li id='<%=templateVars.idResults[2].id%>' title='<%=templateVars.getPollOptions[2].title%>' desc='<%=templateVars.getDescriptionOptions[2].description%>' poll_id='<%=templateVars.pollIdResults[2].poll_id%>'></li>>
-                    <span><%=templateVars.getPollOptions[2].title%></span>
-                    <span><%=templateVars.getDescriptionOptions[2].description%></span>
+                <li id='<%=templateVars.idResults[2].id%>' title='<%=templateVars.getPollOptions[2].title%>' desc='<%=templateVars.getDescriptionOptions[2].description%>' poll_id='<%=templateVars.pollIdResults[2].poll_id%>'>
+                    <span class="voting-option"><%=templateVars.getPollOptions[2].title%></span>
+                    <span class="voting-description"><%=templateVars.getDescriptionOptions[2].description%></span>
                 </li>
               </ul>
               <button type="submit" id="singlebutton" id="voting" name="singlebutton" class="btn btn-primary center-block">Submit</button>
