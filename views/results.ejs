@@ -29,9 +29,11 @@
 
       <script type="text/javascript" src="/scripts/chart.js"></script>
       <canvas id="myChart" width="300px" height="300px"></canvas>
-
-
-
+<% for (var result in templateVars.results) { %>
+<% if (templateVars.results[result].rank > (templateVars.results[result].rank)+ 1) { %>
+<%=templateVars.results[result].rank%>
+<%}%>
+<%}%>
     </section>
 
   </body>

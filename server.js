@@ -49,7 +49,6 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home Page / Create Polls Page
-
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -62,31 +61,30 @@ app.post("/", (req, res) => {
       const pollID = results[0];
 
       knex('options')
-      .insert([
-        {poll_id: results[0], title: req.body.title1, description: req.body.description1},
-        {poll_id: results[0], title: req.body.title2, description: req.body.description2},
-        {poll_id: results[0], title: req.body.title3, description: req.body.description3}
-      ])
-      .then((results) => {
-        res.redirect(`/${pollID}/links`);
-        // Send email to poll maker via mailgun
-        // res.render("links");
-        const data = {
-          from: 'InDecision <me@sandbox123.mailgun.org>',
-          to: req.body.email,
-          subject: 'Hello',
-          html: `<html><body><a href='http://localhost:3000/${pollID}/vote'>Voting Page</a><br><a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
-        };
-        mailgun.messages().send(data, function (error, body) {
+        .insert([
+          {poll_id: results[0], title: req.body.title1, description: req.body.description1},
+          {poll_id: results[0], title: req.body.title2, description: req.body.description2},
+          {poll_id: results[0], title: req.body.title3, description: req.body.description3}
+        ])
+        .then((results) => {
+          res.redirect(`/${pollID}/links`);
+          // Send email to poll maker via mailgun
+          const data = {
+            from: 'InDecision <me@sandbox123.mailgun.org>',
+            to: req.body.email,
+            subject: 'Thanks for creating your poll with InDecision!',
+            html: `<html><body>Thanks for creating your poll with InDecision, here's the link to send to all of your friends: <a href='http://localhost:3000/${pollID}/vote'>Voting Page</a><br> Here's the link to view the results of your poll: <a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
+          };
+          mailgun.messages().send(data, function (error, body) {
+          });
+        })
+        .catch((err) => {
+          res.status(500).send(err);
         });
-      })
-      .catch((err) => {
-        res.status(500).send(err);
-      });
-  })
-  .catch((err) => {
-    res.status(500).send(err);
-  });
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 });
 
 // Poll CREATED! Here are your links page
@@ -101,7 +99,6 @@ app.get(`/:pollID/links`, (req, res) => {
 });
 
 // Voting Page
-
 app.get("/:pollID/vote", (req, res) => {
   knex.select('question')
     .from('polls')
@@ -142,60 +139,60 @@ app.get("/:pollID/vote", (req, res) => {
 });
 
 // Grabs votes and inserts into rankings table
-
-
 app.post("/:pollID/vote", (req, res) => {
-  console.log("i am in pollid/vote page");
   const voteResult = req.body.id;
   rank(voteResult);
   const pollID = req.body.id[0].poll_id;
   knex.select('email')
-  .from('polls')
-  .then((emailResults) => {
-   res.redirect("/<%pollID%>/thankyou");
-  // Send email to poll maker via mailgun
-  const data = {
-    from: 'InDecision <me@sandbox123.mailgun.org>',
-    to: emailResults[pollID-1].email,
-    subject: 'Someone Voted on your Poll!',
-    html: `<html><body><a href='http://localhost:3000/pollID/results'>Results Page</a></body></html>`
-  };
-  mailgun.messages().send(data, function (error, body) {
-  });
-   })
+    .from('polls')
+    .then((emailResults) => {
+      res.redirect("/<%pollID%>/thankyou");
+      // Send email to poll maker via mailgun
+      const data = {
+        from: 'InDecision <me@sandbox123.mailgun.org>',
+        to: emailResults[pollID - 1].email,
+        subject: 'Someone Voted on your Poll!',
+        html: `<html><body>Someone voted on your poll! Click here to view the results: <a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
+      };
+      mailgun.messages().send(data, function (error, body) {
+      });
+    });
 });
 
 app.get("/:pollID/thankyou", (req, res) => {
   res.render("thankyou");
-  console.log("im in the thankyou page")
 });
 
-// Results of Poll Page
-
+// Render results of Poll Page
 app.get("/:pollID/results", (req, res) => {
   knex.select('question')
-  .from('polls')
-  .where('id', req.params.pollID)
-  .then((questionResults) => {
+    .from('polls')
+    .where('id', req.params.pollID)
+    .then((questionResults) => {
       knex.select('option_id', 'title', 'rank')
-      .join('options', 'option_id', '=', 'options.id')
-      .from('rankings')
-      .where('poll_id', req.params.pollID)
-      .then((results) => {
-        const pollQuestion = questionResults[0].question;
-        const templateVars = {
-          pollQuestion: pollQuestion,
-          results: results
-        };
-        res.render("results", {templateVars});
-      })
-    })
-
-  });
+        .join('options', 'option_id', '=', 'options.id')
+        .from('rankings')
+        .where('poll_id', req.params.pollID)
+        .then((results) => {
+          const pollQuestion = questionResults[0].question;
+          const templateVars = {
+            pollQuestion: pollQuestion,
+            results: results
+          };
+          res.render("results", {templateVars});
+        });
+    });
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
+
 
 
 
