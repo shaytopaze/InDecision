@@ -155,7 +155,7 @@ app.get("/:pollID/thankyou", (req, res) => {
   res.render("thankyou");
 });
 
-Results of Poll Page
+// Results of Poll Page
 
 app.get("/:pollID/results", (req, res) => {
   res.render("results");
