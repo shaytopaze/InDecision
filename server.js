@@ -74,8 +74,8 @@ app.post("/", (req, res) => {
         const data = {
           from: 'InDecision <me@sandbox123.mailgun.org>',
           to: req.body.email,
-          subject: 'Hello',
-          html: `<html><body><a href='http://localhost:3000/${pollID}/vote'>Voting Page</a><br><a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
+          subject: 'Thanks for creating your poll with InDecision!',
+          html: `<html><body>Thanks for creating your poll with InDecision, here's the link to send to all of your friends: <a href='http://localhost:3000/${pollID}/vote'>Voting Page</a><br> Here's the link to view the results of your poll: <a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
         };
         mailgun.messages().send(data, function (error, body) {
         });
@@ -158,7 +158,7 @@ app.post("/:pollID/vote", (req, res) => {
     from: 'InDecision <me@sandbox123.mailgun.org>',
     to: emailResults[pollID-1].email,
     subject: 'Someone Voted on your Poll!',
-    html: `<html><body><a href='http://localhost:3000/pollID/results'>Results Page</a></body></html>`
+    html: `<html><body>Someone voted on your poll! Click here to view the results: <a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
   };
   mailgun.messages().send(data, function (error, body) {
   });
