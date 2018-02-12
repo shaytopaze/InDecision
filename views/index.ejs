@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Poppins:300,400" rel="stylesheet">  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <title>InDecision</title>
 </head>
@@ -14,40 +13,40 @@
       <div class="container" >
           <div class="row" id="col_width">
             <div class="col" >
-              <h5 class="text-center" id="h5-color">Create a poll and share it with your friends. Let's decide together!</h5>
+              <h2 class="text-center" id="h5-color">Create a poll and share it with your friends.</h2>
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" id="poll_title" name="question" placeholder="Type your question here!">
+                    <input type="text" class="form-control" id="poll_title" name="question" placeholder="What do you want to ask?">
                   </div>
             </div>
           </div>
-          <div class="row" id="options-bg">
-              <h3 id="options-title">Options</h3>
+          <div class="row" id="options-bg" class="top-radius">
+              <h4 id="options-title">What options are you thinking about?</h4>
           </div>
-          <div class="row" id="options-bg" class="d-inline-flex p-2">
-            <div class="col" class="d-flex flex-row" id="option-width">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="option" name="title1" placeholder="Option 1">
+          <div class="row" id="options-bg" class="d-flex flex-row" >
+            <div class="col"  id="option-width" class="p-2">
+                <div class="form-group" id="form-field-border">
+                    <input type="text" class="form-control" id="option" name="title1" placeholder="Write your option here">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description1" placeholder="Description">
+                    <input type="text" class="form-control" id="option_description" name="description1" placeholder="Description (optional)">
                 </div>        </div>
-            <div class="col" class="d-flex flex-row" id="option-width">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="option" name="title2" placeholder="Option 2">
+            <div class="col" class="p-2" id="option-width">
+                <div class="form-group" id="form-field-border">
+                    <input type="text" class="form-control" id="option" name="title2" placeholder="What are your options?">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description2" placeholder="Description">
+                    <input type="text" class="form-control" id="option_description" name="description2" placeholder="Description (optional)">
                 </div>
             </div>
-            <div class="col" class="d-flex flex-row" id="option-width">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="option" name="title3" placeholder="Option 3">
+            <div class="col" class="p-2" id="option-width" >
+                <div class="form-group" id="form-field-border">
+                    <input type="text" class="form-control" id="option" name="title3" placeholder="What are your options?">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="option_description" name="description3" placeholder="Description">
+                    <input type="text" class="form-control" id="option_description" name="description3" placeholder="Description (optional)">
                 </div>
             </div>
           </div>

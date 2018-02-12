@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Thanks for Voting!</title>
-
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Poppins:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>InDecision</title>
+</head>
   <body>
-    <h1>Thanks for Voting!</h1>
-    <section>
-
-      <a href="">Results!</a>
-
-    </section>
+      <div class="sticky-top"><p>In<span id="letter">D</span>ecision</p></div>
+      <div class="row" id="main-section-thanks" class="d-flex flex-row">
+        <div class="col" class="p-2">
+            <img src="/images/thanks.png" alt="thank you">
+        </div>
+        <div class="col" class="p-2">
+          <h3>Your vote has been submited</h3>
+          <p >To view the results, click below!</p>
+          <a href="www.google.ca" id="results-button" class="text-center">Results here</a>
+        </div>
+      </div>
   </body>
 </html>

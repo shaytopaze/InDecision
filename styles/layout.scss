@@ -1,6 +1,5 @@
-
 html body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 h1 {
@@ -9,9 +8,9 @@ h1 {
 
 .sticky-top {
  background-color: #31406B;
- height: 60px;
+ height: 80px;
  text-align: center;
- font-family: ‘Roboto’, sans-serif;
+ font-family: 'Josefin Sans', sans-serif;
 }
 
 .sticky-top p {
@@ -27,15 +26,17 @@ h1 {
 }
 
 .container {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .container #h5-color {
   color: #31406B;
+  padding-bottom: 30px;
 }
 
 .container #options-bg {
   background-color: #999FBF;
+  padding-top: 10px;
 }
 
 .container #col_width {
@@ -44,22 +45,23 @@ h1 {
   margin-bottom: 3em;
 }
 
+ .container .top-radius {
+  border-top-right-radius: 15px;
+}
+
 #options-title {
   color: #fff;
   margin: auto;
   padding: 10px;
 }
 
-.container #option-width {
-  min-width: 350px;
-}
 
 #singlebutton {
  display: block;
  background-color: #31406B;
  border: 1px solid #31406B;
  margin: auto;
- margin-top: 40px;
+ margin-top: 10px;
  margin-bottom: 20px;
  width: 30%;
 }
@@ -68,7 +70,29 @@ h1 {
   border: 1px solid #fff;
 }
 
+#poll_title::placeholder,
+#email::placeholder,
+#option_description::placeholder,
 #option::placeholder {
-  color: #31406B;
+  color: #bdbdbd;
 }
 
+#email,
+#poll_title,
+#form-field-border {
+  border: 1px solid #31406B;
+  border-radius: 5px;
+}
+
+#email,
+#poll_title {
+  border: 2px solid #31406B;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 769px) {
+  .container #option-width {
+    min-width: 250px;
+  }
+}
