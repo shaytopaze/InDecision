@@ -11,18 +11,26 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
- 
+
     <!-- <script type="text/javascript" src="/scripts/chart.js"></script> -->
 
   </head>
   <body>
     <h1>RESULTS PAGE!</h1>
     <section>
+
+    <p><%=templateVars.pollQuestion%></p>
+    <p><%=templateVars.results[0].title%></p>
+    <p><%=templateVars.results[0].rank%></p>
+    <p><%=templateVars.results[1].title%></p>
+    <p><%=templateVars.results[1].rank%></p>
+    <p><%=templateVars.results[2].title%></p>
+    <p><%=templateVars.results[2].rank%></p>
+
       <script type="text/javascript" src="/scripts/chart.js"></script>
       <canvas id="myChart" width="300px" height="300px"></canvas>
 
 
-     
 
     </section>
 

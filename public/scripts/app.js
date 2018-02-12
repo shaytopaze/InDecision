@@ -13,7 +13,7 @@ $(() => {
     var elements = allListElements.innerHTML;
     $('ul li').each(function(i){
       var id = $(this).attr('id');
-      var title = $(this).attr('title'); // This is your rel value
+      var title = $(this).attr('title');
       var desc = $(this).attr('desc');
       var poll_id = $(this).attr('poll_id');
       var tempObject;
@@ -42,4 +42,5 @@ $(() => {
     });
   });
 }); //main document ready ends here
+
 
