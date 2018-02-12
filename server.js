@@ -73,7 +73,7 @@ app.post("/", (req, res) => {
             from: 'InDecision <me@sandbox123.mailgun.org>',
             to: req.body.email,
             subject: 'Thanks for creating your poll with InDecision!',
-            html: `<html><body>Thanks for creating your poll with InDecision, here's the link to send to all of your friends: <a href='http://localhost:3000/${pollID}/vote'>Voting Page</a><br> Here's the link to view the results of your poll: <a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
+            html: `<html><body>Thanks for creating your poll with InDecision, here's the link to send to all of your friends: <a href='http://localhost:3000/${pollID}/vote'>http://localhost:3000/${pollID}/vote</a><br> Here's the link to view the results of your poll: <a href='http://localhost:3000/${pollID}/results'>http://localhost:3000/${pollID}/results</a></body></html>`
           };
           mailgun.messages().send(data, function (error, body) {
           });
@@ -152,7 +152,7 @@ app.post("/:pollID/vote", (req, res) => {
         from: 'InDecision <me@sandbox123.mailgun.org>',
         to: emailResults[pollID - 1].email,
         subject: 'Someone Voted on your Poll!',
-        html: `<html><body>Someone voted on your poll! Click here to view the results: <a href='http://localhost:3000/${pollID}/results'>Results Page</a></body></html>`
+        html: `<html><body>Someone voted on your poll! Click here to view the results: <a href='http://localhost:3000/${pollID}/results'>http://localhost:3000/${pollID}/results</a><br>Click here to view the admistrative link: <a href='http://localhost:3000/${pollID}/links'>http://localhost:3000/${pollID}/links</body></html>`
       };
       mailgun.messages().send(data, function (error, body) {
       });
