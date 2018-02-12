@@ -33,6 +33,7 @@ $(() => {
       success: function(event){
         console.log("Post was successful!");
         console.log(array);
+        window.location.href = "thankyou"
       },
       error: function(err){
         console.log("There was an error posting!");
