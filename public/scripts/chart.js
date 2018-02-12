@@ -29,6 +29,9 @@ $(() => {
       legend: {
         position: 'right',
         display: true,
+        labels: {
+          fontSize:30
+        }
       },
       animation: {
         duration: 4500
