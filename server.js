@@ -179,7 +179,12 @@ app.get("/:pollID/results", (req, res) => {
             pollQuestion: pollQuestion,
             results: results
           };
-          res.render("results", {templateVars});
+          if (results.length === 0) {
+            res.status(400);
+            res.end(`<html><body> This poll hasn't been voted on yet! </html></body>`);
+          } else {
+            res.render("results", {templateVars});
+          }
         });
     });
 });
