@@ -27,10 +27,10 @@ $(() => {
         text: 'What should I do in my free time?'
       },
       legend: {
-        position: 'right',
+        position: 'bottom',
         display: true,
         labels: {
-          fontSize:30
+          fontSize:25
         }
       },
       animation: {
