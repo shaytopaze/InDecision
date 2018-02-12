@@ -20,7 +20,7 @@
             <div class="question">
                 <%=templateVars.getPollsQuestion[0].question%>
             </div>
-            <form method="POST" action=`/${templateVars.pollID}/vote`>
+            <form method="POST" action="/vote">
             <ul id="sortable">
                 <li id='<%=templateVars.idResults[0].id%>' title='<%=templateVars.getPollOptions[0].title%>' desc='<%=templateVars.getDescriptionOptions[0].description%>' poll_id='<%=templateVars.pollIdResults[0].poll_id%>'>
                   <span><%=templateVars.getPollOptions[0].title%></span>

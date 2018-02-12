@@ -131,8 +131,7 @@ app.get("/:pollID/vote", (req, res) => {
                         getPollsQuestion: getPollsQuestion,
                         getDescriptionOptions: getDescriptionOptions,
                         pollIdResults: pollIdResults,
-                        idResults: idResults,
-                        pollID: req.params.pollID
+                        idResults: idResults
                       };
                       res.render("vote", {templateVars});
                     });
@@ -144,16 +143,17 @@ app.get("/:pollID/vote", (req, res) => {
 
 // Grabs votes and inserts into rankings table
 
+
 app.post("/:pollID/vote", (req, res) => {
+  console.log("i am in pollid/vote page");
   const voteResult = req.body.id;
   rank(voteResult);
   const pollID = req.body.id[0].poll_id;
-  console.log(pollID);
   knex.select('email')
   .from('polls')
   .then((emailResults) => {
-    res.redirect(`/${pollID}/thankyou`);
-    // Send email to poll maker via mailgun
+   res.redirect("/<%pollID%>/thankyou");
+  // Send email to poll maker via mailgun
   const data = {
     from: 'InDecision <me@sandbox123.mailgun.org>',
     to: emailResults[pollID-1].email,
@@ -167,6 +167,7 @@ app.post("/:pollID/vote", (req, res) => {
 
 app.get("/:pollID/thankyou", (req, res) => {
   res.render("thankyou");
+  console.log("im in the thankyou page")
 });
 
 // Results of Poll Page
@@ -195,6 +196,11 @@ app.get("/:pollID/results", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+
+
 
 
 
