@@ -18,10 +18,17 @@
 }
 
 .question {
-  font-size: 20px;
+  font-size: 24px;
   color: #fff;
   text-align: center;
   margin-top: 20px;
+}
+
+.question #instructions {
+  color: #413C45;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 15px;
 }
 
 #sortable li {
