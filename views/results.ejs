@@ -20,15 +20,16 @@
     <section>
 
     <p><%=templateVars.pollQuestion%></p>
-    <p><%=templateVars.results[0].title%></p>
-    <p><%=templateVars.results[0].rank%></p>
-    <p><%=templateVars.results[1].title%></p>
-    <p><%=templateVars.results[1].rank%></p>
-    <p><%=templateVars.results[2].title%></p>
-    <p><%=templateVars.results[2].rank%></p>
+    <p id="one" hidden><%=templateVars.results[0].title%></p>
+    <p id="rankOne" hidden><%=templateVars.results[0].rank%></p>
+    <p id="two" hidden><%=templateVars.results[1].title%></p>
+    <p id="rankTwo" hidden><%=templateVars.results[1].rank%></p>
+    <p id="three" hidden><%=templateVars.results[2].title%></p>
+    <p id="rankThree" hidden><%=templateVars.results[2].rank%></p>
 
       <script type="text/javascript" src="/scripts/chart.js"></script>
       <canvas id="myChart" width="300px" height="300px"></canvas>
+      <div id='chartjsLegend' class='chartjsLegend'></div>
 
 
 
