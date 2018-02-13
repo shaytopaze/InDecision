@@ -1,3 +1,8 @@
+InDecision is a Node/Express/Bootstrap application where you can create a poll, share it amongst friends, and keep track of its status. Polling is based on the Borda Count method, a consensus-based voting system rather than a majoritarian one. 
+
+
+
+
 # Node Skeleton
 
 ## Project Setup
@@ -21,7 +26,7 @@
 6. Run the seed: `npm run knex seed:run`
   - Check the seeds file to see what gets seeded in the DB
 7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+8. Visit `http://localhost:3000/`
 
 ## Dependencies
 
